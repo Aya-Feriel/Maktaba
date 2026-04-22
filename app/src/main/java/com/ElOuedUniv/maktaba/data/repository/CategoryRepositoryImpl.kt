@@ -25,7 +25,18 @@ class CategoryRepositoryImpl @Inject constructor() : CategoryRepository {
             id = "3",
             name = "Databases",
             description = "Books about database design and management"
-        )
+        ),
+        Category(
+            id = "4",
+            name = "Mobile Development",
+            description = "Books about Android and mobile app development"
+        ),
+        Category(
+            id = "5",
+            name = "Artificial Intelligence",
+            description = "Books about AI, machine learning, and data science"
+        ),
+
     )
 
     private val categoriesFlow = MutableSharedFlow<List<Category>>(replay = 1).apply {
