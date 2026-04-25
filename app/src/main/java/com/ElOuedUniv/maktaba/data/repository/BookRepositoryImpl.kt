@@ -1,5 +1,6 @@
 package com.ElOuedUniv.maktaba.data.repository
 
+import com.ElOuedUniv.maktaba.R
 import com.ElOuedUniv.maktaba.data.model.Book
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -11,19 +12,34 @@ import javax.inject.Inject
 class BookRepositoryImpl @Inject constructor() : BookRepository {
 
     private val _booksList = mutableListOf(
-        Book(isbn = "11111", title = "Clean Code", nbPages = 10),
-        Book(isbn = "22222", title = "The Pragmatic Programmer", nbPages = 0),
-        Book(isbn = "33333", title = "Design Patterns", nbPages = 0),
-        Book(isbn = "44444", title = "Refactoring", nbPages = 0),
-        Book(isbn = "55555", title = "Head First Design Patterns", nbPages = 0)
+        Book(isbn = "9780136083221", title = "Clean Code", nbPages = 431,
+            imageUrl = "res:${R.drawable.book_clean_code}"),
+        Book(isbn = "9780135957059", title = "The Pragmatic Programmer", nbPages = 352,
+            imageUrl = "res:${R.drawable.book_pragmatic}"),
+        Book(isbn = "0201633612", title = "Design Patterns", nbPages = 395,
+            imageUrl = "res:${R.drawable.book_design_patterns}"),
+        Book(isbn = "9780201485677", title = "Refactoring", nbPages = 464,
+            imageUrl = "res:${R.drawable.book_refactoring}"),
+        Book(isbn = "9781492078005", title = "Head First Design Patterns", nbPages = 672,
+            imageUrl = "res:${R.drawable.book_head_first}"),
+        Book(isbn = "9780262046305", title = "Introduction to Algorithms Cormen", nbPages = 1312,
+            imageUrl = "res:${R.drawable.book_algorithms}"),
+        Book(isbn = "9781934356364", title = "Learn to Program", nbPages = 230,
+            imageUrl = "res:${R.drawable.book_learn_program}"),
+        Book(isbn = "9780262518802", title = "Algorithms Unlocked", nbPages = 240,
+            imageUrl = "res:${R.drawable.book_algorithms_unlocked}"),
+        Book(isbn = "9780134340012", title = "How to Solve it by Computer", nbPages = 442,
+            imageUrl = "res:${R.drawable.book_how_to_solve}"),
+        Book(isbn = "9780735619678", title = "Code Complete", nbPages = 914,
+            imageUrl = "res:${R.drawable.book_code_complete}")
     )
 
     private val booksFlow = MutableSharedFlow<List<Book>>(replay = 1).apply {
         tryEmit(_booksList.toList())
     }
-    
+
     override fun getAllBooks(): Flow<List<Book>> = flow {
-        delay(2000) // Simulate delay
+        delay(2000)
         emitAll(booksFlow)
     }
 
